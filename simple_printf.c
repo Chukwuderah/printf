@@ -11,24 +11,27 @@
 int _printf(const char *format, ...)
 {
 	va_list arguments;
+
 	va_start(arguments, format);
 
 	int count = 0;
-	
-	while(*format)
+
+	while (*format)
 	{
 		if (*format == "%")
 		{
 			format++;
-			switch(*format)
+			switch (*format)
 			{
 				case ('c'):
 					char arg_char = va_arg(arguments, int);
+
 					write(1, &arg_char, 1);
 					count++;
 					break;
 				case ('s'):
 					char *arg_str = va_arg(arguments, char*);
+
 					while (*arg_str)
 					{
 						write(1, arg_str, 1);
@@ -49,10 +52,10 @@ int _printf(const char *format, ...)
 		} else
 		{
 			write(1, format, 1);
-			count++
+			count++;
 		}
 		format++;
-	}	
+	}
 	va_end(arguments);
 
 	return (count);
